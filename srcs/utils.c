@@ -6,19 +6,19 @@
 /*   By: lberne <lberne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 16:48:09 by lberne            #+#    #+#             */
-/*   Updated: 2024/07/04 16:51:59 by lberne           ###   ########.fr       */
+/*   Updated: 2024/07/15 13:17:17 by lberne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-t_complex   sum_complex(t_complex z1, t_complex z2)
+t_complex	sum_complex(t_complex z1, t_complex z2)
 {
-    t_complex   result;
+	t_complex	result;
 
-    result.x = z1.x + z2.x;
-    result.y = z1.y + z2.y;
-    return result;
+	result.x = z1.x + z2.x;
+	result.y = z1.y + z2.y;
+	return (result);
 }
 
 double map(double unscaled_num, double new_min, double new_max, double old_min, double old_max)

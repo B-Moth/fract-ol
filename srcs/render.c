@@ -6,7 +6,7 @@
 /*   By: lberne <lberne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 16:41:19 by lberne            #+#    #+#             */
-/*   Updated: 2024/07/05 14:41:52 by lberne           ###   ########.fr       */
+/*   Updated: 2024/07/15 13:07:52 by lberne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ static void	handle_pixel(int x, int y, t_fractal *fractal)
 		// actual z^2 + c	
 		// z = z^2 + c
 		z = sum_complex(square_complex(z), c);
-		
 		// Is the value escaped???
 		// if hypotenuse > 2 i assume the point has escaped
 		if ((z.x * z.x) + (z.y * z.y) > fractal->escape_value)
@@ -63,13 +62,13 @@ static void	handle_pixel(int x, int y, t_fractal *fractal)
 			better_pixel_put(x, y, &fractal->img, color);
 			return ;
 		}
-		++i;	
+		++i;
 	}
 	// We are in MANDELBROT given the iterations made
 	better_pixel_put(x, y, &fractal->img, NEON_PINK);
 }
 
-void	fractal_render(t_fractal *fractal)
+void	fractal_render(t_fractal *f)
 {
 	int	x;
 	int	y;
@@ -80,12 +79,9 @@ void	fractal_render(t_fractal *fractal)
 		x = -1;
 		while (++x < WIDTH)
 		{
-			handle_pixel(x, y, fractal);
+			handle_pixel(x, y, f);
 		}
 	}
-	mlx_put_image_to_window(fractal->mlx_connection,
-							fractal->mlx_window,
-							fractal->img.img_ptr,
-							0, 0);	
-
+	mlx_put_image_to_window(f->mlx_connection,
+		f->mlx_window, f->img.img_ptr, 0, 0);
 }
